@@ -1,0 +1,64 @@
+<div class='card shadow mb-4'>
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Request details</h6>
+  </div>
+  <div class="card-body">
+    <div class='row'>
+      <span class='col-sm-12'>Request: <%= @request.id%></span>
+    </div>
+    <div class='row'>
+      <span class='col-sm-12'>User id: <%= @request.external_user_identifier%></span>
+    </div>
+    <div class='row'>
+      <span class='col-sm-12'>Request type: <%= @request.request_type.capitalize%></span>
+    </div>
+    <div class='row'>
+      <div class="table-responsive col-sm-12">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Application</th>
+                    <th>Integration</th>
+                    <th>Status</th>
+                    <th>File</th>
+                    <th>Error</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @request.external_requests.each do |external_request| %>
+                    <tr>
+                      <td><%= external_request.integration.application.name %></td>
+                      <td><%= external_request.integration.description %></td>
+                      <td><%= external_request.status %></td>
+                      <td>
+                        <% external_request.export_files.each do |export_file| %>
+                          <%= link_to "Download", export_file.file_url %>
+                        <% end %>
+                      </td>
+                      <td><%= external_request.error %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(document).ready( function () {
+    $('#dataTable').DataTable({
+      "pageLength": 150,
+      "lengthChange": false,
+      "language": {
+        "emptyTable": "We haven't received any requests from your app yet."
+      },
+    });
+  });
+<% end %>

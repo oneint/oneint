@@ -1,0 +1,37 @@
+<h4 class='mb-4'><%= @workspace.name %> settings</h4>
+<div class='row'>
+  <div class='col-sm-10'>
+    <%= form_for @workspace do |f| %>
+      <div class='form-group row'>
+        <%= f.label :name, class: 'col-sm-4 col-form-label' %>
+        <%= f.text_field :name, placeholder: "Description for this integration", class: 'form-control col-sm-6' %>
+      </div>
+
+      <div class='form-group row'>
+        <%= f.label :api_key, class: 'col-sm-4 col-form-label mt-3' %>
+        <div class="card mb-3" style="max-width: 540px; overflow: scroll; background: #ccc;">
+          <div class="row no-gutters">
+            <div class="card-body">
+              <%= @workspace.api_key %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='form-group row'>
+        <%= f.label :public_key, "Public key(is needed to verify requests for custom webhooks)", class: 'col-sm-4 col-form-label mt-3' %>
+        <div class="card mb-3" style="max-width: 540px; overflow: scroll; background: #ccc;">
+          <div class="row no-gutters">
+            <div class="card-body">
+              <%= @workspace.public_key.gsub("\n", "\\n") %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: 'btn btn-primary mb-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>

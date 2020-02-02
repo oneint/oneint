@@ -1,0 +1,14 @@
+<br>
+<div class='container'>
+  <div class='row'>
+    <% @applications.each_with_index do |app, index| %>
+      <div class='col'>
+        <div class="card">
+          <a href='<%= new_integration_path(application_id: app.id) %>' data-toggle="tooltip" title='<%=app.name%>'>
+            <%= image_tag "#{app.name.downcase.gsub('.', '').gsub(/\s/, '')}-logo.png", class: 'card-img-top', alt: "#{app.name}" %>
+          </a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

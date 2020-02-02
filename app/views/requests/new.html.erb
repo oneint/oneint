@@ -1,0 +1,28 @@
+<%= form_for @request, class: 'form' do |f| %>
+`  <%= render "shared/errors" %>
+  <div class='form-group row'>
+    <%= f.label :request_type, class: 'col-sm-4 col-form-label' %>
+    <%= f.select :request_type, ['deletion', 'export'], {}, class: 'form-control col-sm-3' %>
+  </div>
+
+  <div class='form-group row'>
+    <%= f.label :external_user_identifier, "ID of the user record", class: 'col-sm-4 col-form-label' %>
+    <%= f.text_field :external_user_identifier, class: 'form-control col-sm-6', placeholder: "User ID" %>
+  </div>
+
+  <div class='form-group row'>
+    <%= f.label :requested_at, class: 'col-sm-4 col-form-label' %>
+    <%= f.datetime_select :requested_at, class: 'form-control col-sm-6', placeholder: "Requested at" %>
+  </div>
+
+  <% if @workspace.applications.pluck(:name).include?('Appsflyer') %>
+    <div class='form-group row'>
+      <%= f.label :appsflyer_advertising_id, "Appsflyer Advertising User Id", class: 'col-sm-4 col-form-label' %>
+      <%= f.text_field :appsflyer_advertising_id, class: 'form-control col-sm-6', placeholder: "Appsflyer Advertising User ID" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary mb-2" %>
+  </div>`
+<% end %>

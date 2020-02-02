@@ -1,0 +1,14 @@
+<h4>New Integration for <%= @application.name %></h4>
+
+<div class='row'>
+  <div class='col-sm-10'>
+    <%= form_for @integration, class: 'form' do |f| %>
+      <%= f.hidden_field :application_id, value: params[:application_id] || @integration.application_id%>
+      <%= render 'form', f: f %>
+    
+      <div class="actions">
+        <%= f.submit "Submit", class: "btn btn-primary mb-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>

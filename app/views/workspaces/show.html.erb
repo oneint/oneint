@@ -1,0 +1,58 @@
+<div class='d-flex flex-row-reverse mb-4'>
+  <%= link_to "Create request", new_request_path, class: 'btn btn-primary'%>
+</div>
+
+<div class='card shadow mb-4'>
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Requests</h6>
+  </div>
+  <div class="card-body">
+    <div class='row'>
+      <div class="table-responsive col-sm-12">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>User id</th>
+                    <th>Request type</th>
+                    <th>Requested at</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @requests.each do |req| %>
+                    <tr data-link="<%=request_path(req)%>" class='clickable'>
+                      <td><%= req.external_user_identifier%></td>
+                      <td><%= req.request_type %></td>
+                      <td><%= req.requested_at %></td>
+                      <td><%= req.status %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(document).ready( function () {
+    $('#dataTable').DataTable({
+      "pageLength": 150,
+      "lengthChange": false,
+      "language": {
+        "emptyTable": "We haven't received any requests from your app yet."
+      },
+      order: [[2, 'desc']],
+    });
+
+    $("tr[data-link]").click(function() {
+        window.location = $(this).data('link');
+    });
+} );
+<% end %>

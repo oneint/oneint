@@ -1,0 +1,40 @@
+<!-- Sidebar - Brand -->
+<% workspace_obj = @workspace.persisted? ? @workspace : current_user.current_or_default_workspace %>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%= workspace_path(workspace_obj)%>">
+    <div class="sidebar-brand-text mx-3">OneInt.io</div>
+  </a>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="<%= workspaces_path %>" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <i class="fa fa-fw fa-folder"></i>
+      <span>Workspaces</span>
+    </a>
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Your Workspaces:</h6>
+        <% current_user.workspaces.each do |workspace| %>
+          <%= link_to workspace.name, workspace_path(workspace), class: 'collapse-item'%>
+        <% end %>
+        <div class="collapse-divider"></div>
+        <h6 class="collapse-header">Create new:</h6>
+        <%= link_to "Create new workspace", new_workspace_path, class: 'collapse-item'%>
+      </div>
+    </div>
+  </li>
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link" href="<%= integrations_path %>">
+      <i class="fa fa-fw fa-cog"></i>
+      <span>Integrations</span>
+    </a>
+  </li>
+
+  <% if @workspace.persisted? %>
+    <li class="nav-item">
+      <a class="nav-link" href="<%= edit_workspace_path(@workspace) %>">
+        <i class="fa fa-fw fa-wrench"></i>
+        <span>Settings</span>
+      </a>
+    </li>
+  <% end %>
+</ul>

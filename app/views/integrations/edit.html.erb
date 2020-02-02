@@ -1,0 +1,13 @@
+<h4>Editing integration for <%= @integration.application.name %></h4>
+
+<div class='row'>
+  <div class='col-sm-10'>
+    <%= form_for @integration, class: 'form' do |f| %>
+      <%= render 'form', f: f %>
+      
+      <div class="actions">
+        <%= f.submit "Submit", class: 'btn btn-primary mb-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>

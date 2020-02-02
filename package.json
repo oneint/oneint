@@ -1,0 +1,22 @@
+{
+  "name": "compliance_service",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^4.2.2",
+    "datatables.net": "^1.10.20",
+    "datatables.net-rowgroup": "^1.1.1",
+    "font-awesome": "^4.7.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.0",
+    "startbootstrap-sb-admin-2": "^4.0.7",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.9.0"
+  }
+}

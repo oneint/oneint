@@ -1,0 +1,65 @@
+<%= render "shared/errors" %>
+<%= render "integrations/info_blocks/#{@application.name.downcase.gsub('.', '')}" rescue nil%>
+
+<div class='form-group row'>
+  <%= f.label :description, class: 'col-sm-4 col-form-label' %>
+  <%= f.text_field :description, placeholder: "Description for this integration", class: 'form-control col-sm-6' %>
+</div>
+
+<% unless @application.custom? %>
+  <div class='form-group row'>
+    <% label_text = @application.mixpanel? ? "Project token" : "API key"%>
+    <% label_text = @application.segment? ? "Access token" : "API key"%>
+    <%= f.label :api_key, label_text, class: 'col-sm-4 col-form-label' %>
+    <%= f.text_field :api_key, class: 'form-control col-sm-6', placeholder: "#{@application.name} #{label_text}" %>
+  </div>
+<% end %>
+
+<% if @application.mixpanel? %>
+  <%= f.fields_for :additional_configuration_options do |fields| %>
+    <div class='form-group row'>
+      <%= fields.label :oauth_token, class: 'col-sm-4 col-form-label' %>
+      <%= fields.text_field :oauth_token, class: 'form-control col-sm-6', placeholder: "#{@application.name} Oauth token", value: @integration.oauth_token %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @application.customerio? %>
+  <%= f.fields_for :additional_configuration_options do |fields| %>
+    <div class='form-group row'>
+      <%= fields.label :site_id, class: 'col-sm-4 col-form-label' %>
+      <%= fields.text_field :site_id, class: 'form-control col-sm-6', placeholder: "#{@application.name} Site id", value: @integration.site_id  %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @application.segment? %>
+  <%= f.fields_for :additional_configuration_options do |fields| %>
+    <div class='form-group row'>
+      <%= fields.label :workspace_name, class: 'col-sm-4 col-form-label' %>
+      <%= fields.text_field :workspace_name, class: 'form-control col-sm-6', placeholder: "#{@application.name} Workspace name", value: @integration.workspace_name %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @application.appsflyer? %>
+  <%= f.fields_for :additional_configuration_options do |fields| %>
+    <div class='form-group row'>
+      <%= fields.label :property_id, class: 'col-sm-4 col-form-label' %>
+      <%= fields.text_field :property_id, class: 'form-control col-sm-6', placeholder: "#{@application.name} property id", value: @integration.property_id %>
+    </div>
+    <div class='form-group row'>
+      <%= fields.label :platform, class: 'col-sm-4 col-form-label' %>
+      <%= fields.select :platform, ['android', 'ios', 'fire', 'microsoft'], {selected: @integration.platform}, {class: 'form-control col-sm-6'} %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @application.custom? %>
+  <%= f.fields_for :additional_configuration_options do |fields| %>
+    <div class='form-group row'>
+      <%= fields.label :url, class: 'col-sm-4 col-form-label' %>
+      <%= fields.text_field :url, class: 'form-control col-sm-6', placeholder: "This URL should support both POST and GET requests", value: @integration.url %>
+    </div>
+  <% end %>
+<% end %>

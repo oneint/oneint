@@ -1,0 +1,13 @@
+
+<% obj ||= nil %>
+<% if obj&.errors&.any? %>
+  <div class='alert alert-danger' role='alert'>
+    <% obj.errors.full_messages.each do |error| %>
+      <%= error %><br/>
+    <% end %>
+  </div>
+<% elsif !flash[:error].blank? %>
+  <div class='alert alert-danger' role='alert'>
+    <%= flash[:error] %>
+  </div>
+<% end %>

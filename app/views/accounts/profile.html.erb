@@ -1,0 +1,32 @@
+<h4>Your account</h4>
+
+<div class='row'>
+  <div class='col-sm-10'>
+    <%= form_for current_user, url: accounts_path, class: 'form' do |f| %>
+      <%= render "shared/errors", obj: current_user %>
+      <div class='form-group row'>
+        <%= f.label :email, class: 'col-sm-4 col-form-label' %>
+        <%= f.text_field :email, placeholder: "Your email", class: 'form-control col-sm-6' %>
+      </div>
+
+      <div class='form-group row'>
+        <%= f.label :current_password, class: 'col-sm-4 col-form-label' %>
+        <%= f.text_field :current_password, class: 'form-control col-sm-6', placeholder: "Enter your password if you want to change it" %>
+      </div>
+
+      <div class='form-group row'>
+        <%= f.label :password, class: 'col-sm-4 col-form-label' %>
+        <%= f.text_field :password, class: 'form-control col-sm-6', placeholder: "Enter your new password if you want to change it" %>
+      </div>
+
+      <div class='form-group row'>
+        <%= f.label :password_confirmation, class: 'col-sm-4 col-form-label' %>
+        <%= f.text_field :password_confirmation, class: 'form-control col-sm-6', placeholder: "Password confirmation" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: "btn btn-primary mb-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>
