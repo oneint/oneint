@@ -1,4 +1,4 @@
-# OneInt - Create and manage GDPR/CCPA data-subject requests with ease.
+# OneInt - Create and manage GDPR/CCPA data-subject requests with ease. (beta)
 
 ![OneInt](app/assets/images/oneint.gif)
 
