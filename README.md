@@ -3,7 +3,7 @@
 ![OneInt](app/assets/images/oneint.gif)
 
 ## Summary
-OneInt - Data Privacy Platform that helps create and manage DSR requests from end-users.
+OneInt - Data Privacy Platform that helps create and manage data subject requests(access/delete) from your users.
 
 **If you have ANY questions regarding the platform, please email us at team@oneint.io**
 
@@ -15,18 +15,25 @@ OneInt - Data Privacy Platform that helps create and manage DSR requests from en
 
 [How it works?](#how-it-works)
 
+[API](#api)
+
 [Roadmap](#roadmap)
 
 [Support](#support)
 
 ## Why OneInt?
-If you need to comply with GDPR/CCPA, you will likely need to address consumers requests to access or delete data. Our goal is to make this process less painful and more transparent. If you're building any application/service, you probably use at least several third-party services like(Mixpanel, customer.io, Appsflyer, etc), that means that you need to pull/erase the consumers data from these services. OneInt connects you to these third-party providers via simple API.
+If you need to comply with GDPR/CCPA, you will likely need to address consumers requests to access or delete data. Our goal is to make this process less painful and more transparent. If you're building any application/service, you probably use at least several third-party services like(Mixpanel, customer.io, Appsflyer, etc), that means that you need to send requests to these services to access/delete data.
+
+OneInt does that job for you.
 
 | Without OneInt  | With OneInt |
 | --------------- | ----------- |
 | ![Without OneInt](app/assets/images/oneint-Page-1.png)  | ![With OneInt](app/assets/images/oneint-Page-2.png)  |
 
 ## Installation
+**If you need help with installation, please email us at team@oneint.io**
+
+**More detailed documentation is coming.**
 
 ### Tech Stack
  - Ruby
@@ -55,13 +62,42 @@ You will need manually set the following variables before launching the app.
 | AWS_ACCESS_KEY_ID          | Your AWS access key                                                               |
 | AWS_SECRET_ACCESS_KEY      | Your AWS secret access key                                                        |
 
-## How it works?
-There are two ways how you can create a request in OneInt: API and through the UI.
-Once OneInt receives a request it will automatically send the request to all integrations you've created.
-If you added a custom webhook integration, OneInt will send a JWT that you can decode with your public key using ES384 algorithm.
+### Integration with your own service(custom webhook)
+If you've added a custom webhook integration, OneInt will send a JWT that you can decode with your public key using ES384 algorithm.
 
-If you need help installing or integrating with OneInt, please shoot us an email: **team@oneint.io**.
-**More detailed documentation is coming.**
+## How it works?
+1. Add the integration with third-party(or your own) services. Usually it's done by adding your API key/token but requirements vary from platform to platform.
+2. Create a request either via API or UI. OneInt provides a simple API that you can use when for example user clicks 'delete account' button in your application.
+3. Once OneInt receives a request it will automatically send the request to all integrations you have.
+4. Monitor the status of the request on the dashboard.
+5. Retrieve the files once they're ready. (in case if it's an 'export' request)
+
+## API
+
+### Authentication
+Add ```HTTP_API_KEY``` header name. Header value is your API key which can be found on the Settings page
+
+### Create a request
+```POST /requests```
+
+| Params              | Required? | Value                                           |
+| --------------------|-----------|-------------------------------------------------|
+| request_type        | Yes       |  'export' or 'delete'                           |
+| user_id             |.Yes       |  User ID that you send to third-party providers |
+| appsflyer_attributes| N*        | Please see below                                |
+
+**Appsflyer integration specifics**
+Appsflyer requires to send the advertising id of the user. That's why you should include the appsflyer attributes if you're using this service. 
+```json
+appsflyer_attributes: {
+  advertising_id: <USER Specific advertising id>
+}
+```
+
+### Fetch requests
+```GET /requests```
+
+returns last 150 records.
 
 ## Roadmap
 We have a list of features we want to build but also we need your feedback and requests. (team@oneint.io)
