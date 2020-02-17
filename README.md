@@ -88,7 +88,7 @@ Add ```HTTP_API_KEY``` header name. Header value is your API key which can be fo
 
 **Appsflyer integration specifics**
 Appsflyer requires to send the advertising id of the user. That's why you should include the appsflyer attributes if you're using this service. 
-```json
+```
 appsflyer_attributes: {
   advertising_id: <USER Specific advertising id>
 }
