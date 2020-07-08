@@ -5,7 +5,7 @@
 ## Summary
 OneInt - Data Privacy Platform that helps create and manage data subject requests(access/delete) from your users.
 
-**If you have ANY questions regarding the platform, please email us at team@oneint.io**
+**If you have ANY questions regarding the platform, let us know**
 
 [Why OneInt?](#why-oneint)
 
@@ -31,7 +31,6 @@ OneInt does that job for you.
 | ![Without OneInt](app/assets/images/oneint-Page-1.png)  | ![With OneInt](app/assets/images/oneint-Page-2.png)  |
 
 ## Installation
-**If you need help with installation, please email us at team@oneint.io**
 
 **More detailed documentation is coming.**
 
@@ -55,7 +54,7 @@ You will need manually set the following variables before launching the app.
 | SECRET_KEY_FOR_ENCRYPTION  | 32-byte Secret key that will be used to encrypt API keys keys before saving to DB |
 | SIDEKIQ_USERNAME           | Sidekiq username to access sidekiq admin panel                                    |
 | SIDEKIQ_PASSWORD           | Sidekiq password to access sidekiq admin panle                                    |
-| BASE_URL                   | URL where you host the application. For example https://oneint.io                 |
+| BASE_URL                   | URL where you host the application.                                               |
 | STORAGE_TYPE               | 'memory' OR 'file_system' OR 's3'(default). For file storage                      |
 | STORAGE_AWS_REGION         | 'us-east-1' is a default one                                                      |
 | STORAGE_S3_BUCKET          | Name of the bucket where you want to store files                                  |
@@ -100,7 +99,7 @@ appsflyer_attributes: {
 returns last 150 records.
 
 ## Roadmap
-We have a list of features we want to build but also we need your feedback and requests. (team@oneint.io)
+We have a list of features we want to build but also we need your feedback and requests.
 Some of the features we're going to build in the next versions:
  - Yes, we're planning to add integrations with other popular services.
  - Verification of the requests
@@ -110,4 +109,4 @@ Some of the features we're going to build in the next versions:
 Feel free to submit a PR if you want to Contribute to the project
 
 ## Support
-If you need a Support or any additional features - let us know (team@oneint.io)
+If you need a Support or any additional features - let us know
