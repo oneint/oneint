@@ -7,7 +7,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^4.2.2",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.11.3",
     "datatables.net-rowgroup": "^1.1.1",
     "font-awesome": "^4.7.0",
     "popper": "^1.0.1",
